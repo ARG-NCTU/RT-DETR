@@ -36,6 +36,12 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
         samples = samples.to(device)
         targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
 
+        # print(f"samples device: {samples.device}")
+        # for t in targets:
+        #     for k, v in t.items():
+        #         print(f"target {k} device: {v.device}")
+
+
         if scaler is not None:
             with torch.autocast(device_type=str(device), cache_enabled=True):
                 outputs = model(samples, targets)
@@ -72,6 +78,16 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
             ema.update(model)
 
         loss_dict_reduced = reduce_dict(loss_dict)
+        
+        # # Debugging: Print tensor types and devices
+        # for key, value in loss_dict_reduced.items():
+        #     print(f"{key}: type {type(value)}, device {value.device}")
+
+        # # Check for NaN or inf
+        # for key, value in loss_dict_reduced.items():
+        #     if not torch.isfinite(value).all():
+        #         print(f"Invalid value detected in {key}: {value}")
+
         loss_value = sum(loss_dict_reduced.values())
 
         if not math.isfinite(loss_value):

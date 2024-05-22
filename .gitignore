@@ -167,3 +167,6 @@ cython_debug/
 *.onnx
 rtdetr_pytorch/output/*
 rtdetr_pytorch/dataset/*
+rtdetr_pytorch/pretrained_weights/*
+rtdetr_pytorch/output/*
+rtdetr_pytorch/Boat_dataset/*

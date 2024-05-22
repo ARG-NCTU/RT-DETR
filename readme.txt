@@ -1,0 +1,4 @@
+source Docker/docker_run.sh
+cd rtdetr_pytorch
+export CUDA_VISIBLE_DEVICES=0
+python tools/train.py -c configs/rtdetr/rtdetr_r18vd_6x_coco.yml -t pretrained_weights/rtdetr_r18vd_dec3_6x_coco_from_paddle.pth

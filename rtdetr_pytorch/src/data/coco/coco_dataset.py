@@ -103,7 +103,7 @@ class ConvertCocoPolysToMask(object):
         boxes[:, 0::2].clamp_(min=0, max=w)
         boxes[:, 1::2].clamp_(min=0, max=h)
 
-        if self.remap_mscoco_category:
+        if False: #self.remap_mscoco_category:
             classes = [mscoco_category2label[obj["category_id"]] for obj in anno]
         else:
             classes = [obj["category_id"] for obj in anno]

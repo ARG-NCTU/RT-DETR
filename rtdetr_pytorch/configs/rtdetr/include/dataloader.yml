@@ -20,7 +20,7 @@ train_dataloader:
         - {type: ConvertBox, out_fmt: 'cxcywh', normalize: True}
   shuffle: True
   batch_size: 4
-  num_workers: 4
+  num_workers: 1
   collate_fn: default_collate_fn
 
 
